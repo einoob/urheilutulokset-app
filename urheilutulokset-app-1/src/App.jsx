@@ -50,7 +50,7 @@ const App = () => {
       <Router>
         <Container
           style={{ display: "flex", flexDirection: "column", width: "95%" }}
-          sx={{ py: "12px" }}
+          sx={{ py: "12px", height: "100vh", maxHeight: "100vh" }}
         >
           <CssBaseline />
 

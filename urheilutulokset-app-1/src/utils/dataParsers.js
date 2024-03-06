@@ -3,7 +3,9 @@ const makeArrays = (parsedData) => {
   let currentPage = [];
   let currentSubpage = null;
 
-  for (const item of parsedData) {
+  for (let i = 0; i < parsedData.length; i++) {
+    const item = parsedData[i];
+
     if (item === "PAGECHANGE") {
       if (currentSubpage !== null) {
         currentPage.push(currentSubpage);
@@ -44,8 +46,14 @@ export const parseData = (data) => {
         parsedData.push("SUBPAGECHANGE");
       }
       for (const contentItem of subpage.content) {
+        let foundFirstBrace = false;
         for (const lineItem of contentItem.line) {
-          if (lineItem.Text && lineItem.Text.includes("{")) {
+          if (!foundFirstBrace && lineItem?.Text) {
+            if (lineItem.Text.includes("{")) {
+              foundFirstBrace = true;
+            }
+          }
+          if (foundFirstBrace && lineItem.Text) {
             parsedData.push(lineItem.Text);
           }
         }
