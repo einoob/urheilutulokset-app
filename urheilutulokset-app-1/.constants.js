@@ -1,0 +1,1 @@
+export const API_BASE_URL = "https://external.api.yle.fi/v1/teletext/pages/";

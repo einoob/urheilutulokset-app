@@ -12,7 +12,6 @@ dist
 dist-ssr
 *.local
 .secrets.js
-.constants.js
 
 # Editor directories and files
 .vscode/*
