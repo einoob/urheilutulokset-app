@@ -33,7 +33,7 @@ export const Page = ({ page }) => {
   };
 
   return (
-    <Paper style={{ whiteSpace: "pre-line" }} sx={{ p: "12px" }}>
+    <Paper style={{ whiteSpace: "pre-line" }} sx={{ p: "12px", my: "12px" }}>
       {page.map((subpage, index) => (
         <Slide
           key={index}
