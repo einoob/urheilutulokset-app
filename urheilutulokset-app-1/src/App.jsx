@@ -1,48 +1,46 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Link /*Route, Routes*/ } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { Button, Container, Divider, Typography, createTheme } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Page } from "./pages/Page";
 
 import hockeyService from "./services/hockeyService";
 
 const makeArrays = (parsedData) => {
   let newArray = [];
-  let currentPage = null;
+  let currentPage = [];
   let currentSubpage = null;
 
   for (const item of parsedData) {
     if (item === "PAGECHANGE") {
-      if (currentPage) {
+      if (currentSubpage !== null) {
+        currentPage.push(currentSubpage);
+      }
+      if (currentPage.length > 0) {
         newArray.push(currentPage);
       }
       currentPage = [];
       currentSubpage = null;
     } else if (item === "SUBPAGECHANGE") {
-      if (currentPage && currentSubpage) {
+      if (currentSubpage !== null) {
         currentPage.push(currentSubpage);
       }
       currentSubpage = [];
     } else {
-      if (currentSubpage) {
+      if (currentSubpage !== null) {
         currentSubpage.push(item);
       }
     }
   }
 
-  if (currentSubpage) {
-    // If there's a current subpage at the end, push it to currentPage
-    if (currentPage) {
-      currentPage.push(currentSubpage);
-    }
-  } else {
-    // If there's no current subpage at the end, push currentPage as is
-    if (currentPage) {
-      newArray.push(currentPage);
-    }
+  if (currentSubpage !== null) {
+    currentPage.push(currentSubpage);
   }
-  console.log("arrays", newArray);
+  if (currentPage.length > 0) {
+    newArray.push(currentPage);
+  }
   return newArray;
 };
 
@@ -67,9 +65,10 @@ const parseData = (data) => {
       parsedData.push("PAGECHANGE");
     }
   }
-  parsedData = parsedData.map((data) => data.replaceAll("{SB}", "\n"));
+  parsedData = parsedData.map((data) =>
+    data.replaceAll("{SB}", "").replaceAll("#", "").replaceAll("\n", "")
+  );
   parsedData = parsedData.map((data) => data.replaceAll(/\{[^}]*\}/g, ""));
-  //console.log(parsedData);
   parsedData = makeArrays(parsedData);
   return parsedData;
 };
@@ -88,7 +87,8 @@ const App = () => {
             main: "#234111",
           },
           background: {
-            default: prefersDarkMode ? "#202026" : "#FFFFFF",
+            default: prefersDarkMode ? "#222229" : "#FFFFFF",
+            paper: prefersDarkMode ? "#222229" : "#FDFDFD",
           },
         },
       }),
@@ -98,7 +98,7 @@ const App = () => {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        let dataArray = await hockeyService.getPages();
+        let dataArray = await hockeyService.getPages("221-233");
         setHockeyData(dataArray);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -108,11 +108,15 @@ const App = () => {
   }, []);
 
   const parsedData = parseData(hockeyData);
+  console.log(parsedData);
 
   return (
     <ThemeProvider theme={appliedTheme}>
       <Router>
-        <Container style={{ padding: "24px", display: "flex", flexDirection: "column" }}>
+        <Container
+          style={{ display: "flex", flexDirection: "column", width: "95%" }}
+          sx={{ py: "12px" }}
+        >
           <CssBaseline />
 
           <Button
@@ -124,27 +128,10 @@ const App = () => {
           >
             Home
           </Button>
-          <Typography>
-            {parsedData &&
-              parsedData.map((text, index) => (
-                <span key={index}>
-                  {text}
-                  <br />
-                </span>
-              ))}
+          <Typography fontSize={14}>
+            {parsedData && parsedData.map((page, index) => <Page key={index} page={page} />)}
           </Typography>
           <Divider hidden style={{ height: "34px" }} />
-
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Button variant="contained" sx={{ width: "30%" }}>
-                  Hello world
-                </Button>
-              }
-            ></Route>
-          </Routes>
         </Container>
       </Router>
     </ThemeProvider>

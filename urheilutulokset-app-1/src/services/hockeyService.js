@@ -2,13 +2,13 @@ import { API_BASE_URL } from "../../.constants.js";
 import { API_ID, API_KEY } from "../../.secrets.js";
 import axios from "axios";
 
-const getPages = async () => {
+const getPages = async (pageRange) => {
   let allPages = [];
-  for (let pageNbr = 221; pageNbr <= 233; pageNbr++) {
+  let [firstPage, lastPage] = pageRange.split("-")
+  for (let pageNbr = firstPage; pageNbr <= lastPage; pageNbr++) {
     try {
       const { data } = await axios.get(`${API_BASE_URL}${pageNbr}.json${API_ID}${API_KEY}`);
       allPages.push(data.teletext.page.subpage);
-      // console.log(allPages)
     } catch (error) {
       continue;
     }
