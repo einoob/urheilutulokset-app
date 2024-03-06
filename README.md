@@ -1,1 +1,0 @@
-# urheilutulokset-app
