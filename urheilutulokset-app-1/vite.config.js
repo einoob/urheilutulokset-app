@@ -6,9 +6,10 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      input: "/src/main.jsx",
+      input: ["/src/main.jsx", "./index.html"],
     },
   },
+  base: "./",
   esbuild: {
     loader: "jsx",
   },
