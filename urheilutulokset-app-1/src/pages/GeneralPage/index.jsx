@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, Card, IconButton, Slide, Typography, Container } from "@mui/material";
+import { Card, IconButton, Slide, Typography, Container } from "@mui/material";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 
 export const GeneralPage = ({ page }) => {
@@ -33,7 +33,7 @@ export const GeneralPage = ({ page }) => {
   };
 
   return (
-    <Container style={{ whiteSpace: "pre-line" }} sx={{ p: "12px", m: "12px", width:"400px", boxShadow: 0 }}>
+    <Container sx={{ whiteSpace: "pre-line", p: "12px", m: "auto", width: "400px", boxShadow: 0, overflow: "hidden" }}>
       {page.map((subpage, index) => (
         <Slide
           key={index}
@@ -46,10 +46,13 @@ export const GeneralPage = ({ page }) => {
             sx={{
               p: "12px",
               whiteSpace: "pre-line",
-              display: currentCardIndex === index ? "block" : "none", boxShadow: 2
+              display: currentCardIndex === index ? "block" : "none",
+              boxShadow: 2,
             }}
           >
-            <div style={{ height: "100%" }}><Typography fontSize={12}>{subpage.join("\n")}</Typography></div>
+            <div style={{ height: "100%" }}>
+              <Typography fontSize={12}>{subpage.join("\n")}</Typography>
+            </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <IconButton
                 size="large"
