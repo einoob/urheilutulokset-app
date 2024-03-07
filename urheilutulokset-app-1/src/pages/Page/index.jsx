@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, Card, IconButton, Slide } from "@mui/material";
+import { Paper, Card, IconButton, Slide, Typography } from "@mui/material";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 
 export const Page = ({ page }) => {
@@ -50,7 +50,7 @@ export const Page = ({ page }) => {
               display: currentCardIndex === index ? "block" : "none",
             }}
           >
-            <div style={{ height: "100%" }}>{subpage.join("\n")}</div>
+            <div style={{ height: "100%" }}><Typography fontSize={14}>{subpage.join("\n")}</Typography></div>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <IconButton
                 size="large"

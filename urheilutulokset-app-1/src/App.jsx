@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Link /*Route, Routes*/ } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { Button, Container, Divider, Skeleton, Typography, createTheme } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -63,9 +63,12 @@ const App = () => {
           >
             Home
           </Button>
-          <Typography fontSize={14}>
-            {parsedData ? parsedData.map((page, index) => <Page key={index} page={page} />) : <Skeleton variant="rectangular" />}
-          </Typography>
+          <Routes></Routes>
+            {parsedData ? (
+              parsedData.map((page, index) => <Page key={index} page={page} />)
+            ) : (
+              <Skeleton variant="rectangular" />
+            )}
           <Divider hidden style={{ height: "34px" }} />
         </Container>
       </Router>
