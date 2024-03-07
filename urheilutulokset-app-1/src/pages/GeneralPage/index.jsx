@@ -7,7 +7,6 @@ export const GeneralPage = ({ page }) => {
   const [slideDirection, setSlideDirection] = React.useState("left");
   const [startX, setStartX] = React.useState(0);
 
-  console.log(page);
   const handleNextCard = () => {
     setSlideDirection("left");
     setCurrentCardIndex(Math.min(page.length - 1, currentCardIndex + 1));

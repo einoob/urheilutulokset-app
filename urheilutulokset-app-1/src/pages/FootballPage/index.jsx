@@ -2,10 +2,10 @@ import React from "react";
 import hockeyService from "../../services/hockeyService";
 import { parseData } from "../../utils/dataParsers";
 import { GeneralPage } from "../GeneralPage";
+import { CircularProgress, Container } from "@mui/material";
 
 export const FootballPage = () => {
-  const [hockeyData, setHockeyData] = React.useState([]);
-
+  const [footballData, setHockeyData] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -19,12 +19,14 @@ export const FootballPage = () => {
     fetchData();
   }, []);
 
-  const parsedData = parseData(hockeyData);
+  const parsedData = parseData(footballData);
 
-  console.log("parsedData", parsedData);
-
-  if (!parsedData) {
-    return <div>hockey page</div>
+  if (footballData.length === 0) {
+    return (
+      <Container sx={{ display: "flex", justifyContent: "center", m: "12px" }}>
+        <CircularProgress />
+      </Container>
+    );
   }
   if (parsedData) {
     return (

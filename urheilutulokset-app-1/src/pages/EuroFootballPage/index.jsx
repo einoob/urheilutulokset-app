@@ -4,13 +4,13 @@ import { parseData } from "../../utils/dataParsers";
 import { GeneralPage } from "../GeneralPage";
 import { CircularProgress, Container } from "@mui/material";
 
-export const BasketballPage = () => {
-  const [basketballData, setHockeyData] = React.useState([]);
+export const EuroFootballPage = () => {
+  const [footballData, setHockeyData] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        let dataArray = await hockeyService.getPages("271-279");
+        let dataArray = await hockeyService.getPages("673-696");
         setHockeyData(dataArray);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -19,9 +19,9 @@ export const BasketballPage = () => {
     fetchData();
   }, []);
 
-  const parsedData = parseData(basketballData);
+  const parsedData = parseData(footballData);
 
-  if (basketballData.length === 0) {
+  if (footballData.length === 0) {
     return (
       <Container sx={{ display: "flex", justifyContent: "center", m: "12px" }}>
         <CircularProgress />
