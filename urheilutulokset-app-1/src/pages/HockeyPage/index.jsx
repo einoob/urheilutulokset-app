@@ -28,7 +28,7 @@ export const HockeyPage = () => {
   }
   if (parsedData) {
     return (
-      <div style={{ display: "flex", flexWrap: "wrap"}}>
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent:"space-between"}}>
         {parsedData && parsedData.map((data, index) => (
           <GeneralPage key={index} page={data} />
         ))}

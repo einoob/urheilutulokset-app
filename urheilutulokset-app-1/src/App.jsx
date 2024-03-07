@@ -20,13 +20,12 @@ const App = () => {
           },
           background: {
             default: prefersDarkMode ? "#222229" : "#FFFFFF",
-            paper: prefersDarkMode ? "#222229" : "#FDFDFD",
+            paper: prefersDarkMode ? "#222229" : "#FFFFFF",
           },
         },
       }),
     [prefersDarkMode]
   );
-
 
   return (
     <ThemeProvider theme={appliedTheme}>
@@ -36,19 +35,23 @@ const App = () => {
           sx={{ py: "12px", height: "100vh", maxHeight: "100vh" }}
         >
           <CssBaseline />
-
-          <Button
-            component={Link}
-            to="/"
-            variant="contained"
-            color="primary"
-            sx={{ width: "30%", mb: "12px" }}
-          >
-            Home
-          </Button>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between"}}>
+            <Button
+              component={Link}
+              to="/"
+              variant="contained"
+              color="primary"
+              sx={{ width: "22%", m: "12px" }}
+            >
+              Home
+            </Button>
+            <Button variant="contained" sx={{ width: "22%", m: "12px" }}>Test</Button>
+            <Button variant="contained" sx={{ width: "22%", m: "12px" }}>Test</Button>
+            <Button variant="contained" sx={{ width: "22%", m: "12px" }}>Test</Button>
+          </div>
           <Divider hidden style={{ height: "34px" }} />
           <Routes>
-            <Route exact path="/" element={<HockeyPage />}/>
+            <Route exact path="/" element={<HockeyPage />} />
           </Routes>
         </Container>
       </Router>
