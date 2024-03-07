@@ -4,14 +4,10 @@ import { ThemeProvider } from "@mui/material/styles";
 import { Button, Container, Divider, createTheme } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CssBaseline from "@mui/material/CssBaseline";
-import { parseData } from "./utils/dataParsers";
 
-import hockeyService from "./services/hockeyService";
 import { HockeyPage } from "./pages/HockeyPage";
 
 const App = () => {
-  const [hockeyData, setHockeyData] = React.useState([]);
-
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   const appliedTheme = React.useMemo(
@@ -31,19 +27,6 @@ const App = () => {
     [prefersDarkMode]
   );
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let dataArray = await hockeyService.getPages("221-233");
-        setHockeyData(dataArray);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  const parsedData = parseData(hockeyData);
 
   return (
     <ThemeProvider theme={appliedTheme}>
@@ -63,15 +46,10 @@ const App = () => {
           >
             Home
           </Button>
+          <Divider hidden style={{ height: "34px" }} />
           <Routes>
             <Route exact path="/" element={<HockeyPage />}/>
           </Routes>
-            {/* {parsedData ? (
-              parsedData.map((page, index) => <Page key={index} page={page} />)
-            ) : (
-              <Skeleton variant="rectangular" />
-            )} */}
-          <Divider hidden style={{ height: "34px" }} />
         </Container>
       </Router>
     </ThemeProvider>
