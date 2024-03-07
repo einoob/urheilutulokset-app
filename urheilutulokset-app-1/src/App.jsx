@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
-import { Button, Container, Divider, Skeleton, Typography, createTheme } from "@mui/material";
+import { Button, Container, Divider, createTheme } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Page } from "./pages/Page";
 import { parseData } from "./utils/dataParsers";
 
 import hockeyService from "./services/hockeyService";
+import { HockeyPage } from "./pages/HockeyPage";
 
 const App = () => {
   const [hockeyData, setHockeyData] = React.useState([]);
@@ -63,12 +63,14 @@ const App = () => {
           >
             Home
           </Button>
-          <Routes></Routes>
-            {parsedData ? (
+          <Routes>
+            <Route exact path="/" element={<HockeyPage />}/>
+          </Routes>
+            {/* {parsedData ? (
               parsedData.map((page, index) => <Page key={index} page={page} />)
             ) : (
               <Skeleton variant="rectangular" />
-            )}
+            )} */}
           <Divider hidden style={{ height: "34px" }} />
         </Container>
       </Router>

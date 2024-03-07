@@ -2,12 +2,12 @@ import React from "react";
 import { Paper, Card, IconButton, Slide, Typography } from "@mui/material";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 
-export const Page = ({ page }) => {
-  //const [open, setOpen] = React.useState(false);
+export const GeneralPage = ({ page }) => {
   const [currentCardIndex, setCurrentCardIndex] = React.useState(0);
   const [slideDirection, setSlideDirection] = React.useState("left");
   const [startX, setStartX] = React.useState(0);
 
+  console.log(page);
   const handleNextCard = () => {
     setSlideDirection("left");
     setCurrentCardIndex(Math.min(page.length - 1, currentCardIndex + 1));
@@ -33,7 +33,7 @@ export const Page = ({ page }) => {
   };
 
   return (
-    <Paper style={{ whiteSpace: "pre-line" }} sx={{ p: "12px", my: "12px" }}>
+    <Paper style={{ whiteSpace: "pre-line" }} sx={{ p: "12px", m: "12px", width:"400px" }}>
       {page.map((subpage, index) => (
         <Slide
           key={index}
@@ -50,7 +50,7 @@ export const Page = ({ page }) => {
               display: currentCardIndex === index ? "block" : "none",
             }}
           >
-            <div style={{ height: "100%" }}><Typography fontSize={14}>{subpage.join("\n")}</Typography></div>
+            <div style={{ height: "100%" }}><Typography fontSize={12}>{subpage.join("\n")}</Typography></div>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <IconButton
                 size="large"
