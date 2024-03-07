@@ -3,14 +3,14 @@ import hockeyService from "../../services/hockeyService";
 import { parseData } from "../../utils/dataParsers";
 import { GeneralPage } from "../GeneralPage";
 
-export const FootballPage = () => {
+export const BasketballPage = () => {
   const [hockeyData, setHockeyData] = React.useState([]);
 
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        let dataArray = await hockeyService.getPages("241-244");
+        let dataArray = await hockeyService.getPages("271-279");
         setHockeyData(dataArray);
       } catch (error) {
         console.error("Error fetching data:", error);

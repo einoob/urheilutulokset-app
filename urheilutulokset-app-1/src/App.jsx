@@ -6,6 +6,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import { HockeyPage } from "./pages/HockeyPage";
+import { FootballPage } from "./pages/FootballPage";
+import { BasketballPage } from "./pages/BasketballPage";
 
 const App = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -18,6 +20,9 @@ const App = () => {
           primary: {
             main: "#234111",
           },
+          secondary: {
+            main: "#868686",
+          },
           background: {
             default: prefersDarkMode ? "#222229" : "#FFFFFF",
             paper: prefersDarkMode ? "#222229" : "#FFFFFF",
@@ -27,31 +32,69 @@ const App = () => {
     [prefersDarkMode]
   );
 
+  const lightTheme = createTheme({
+    palette: {
+      mode: "light",
+      primary: {
+        main: "#234111", // Light theme primary color
+      },
+      secondary: {
+        main: "#1976d2", // Example secondary color for light mode
+      },
+    },
+  });
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+      primary: {
+        main: "#81c784", // Dark theme primary color
+      },
+      secondary: {
+        main: "#90caf9", // Example secondary color for dark mode
+      },
+      background: {
+        default: "#222229",
+        paper: "#222229",
+      },
+    },
+  });
+
   return (
-    <ThemeProvider theme={appliedTheme}>
+    <ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
       <Router>
         <Container
           style={{ display: "flex", flexDirection: "column", width: "95%" }}
           sx={{ py: "12px", height: "100vh", maxHeight: "100vh" }}
         >
           <CssBaseline />
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between"}}>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+            <Button component={Link} to="/" color="primary" sx={{ width: "22%", m: "12px" }}>
+              Football
+            </Button>
             <Button
               component={Link}
-              to="/"
-              variant="contained"
+              to="/hockey"
+              variant="text"
               color="primary"
               sx={{ width: "22%", m: "12px" }}
             >
-              Home
+              Hockey
             </Button>
-            <Button variant="contained" sx={{ width: "22%", m: "12px" }}>Test</Button>
-            <Button variant="contained" sx={{ width: "22%", m: "12px" }}>Test</Button>
-            <Button variant="contained" sx={{ width: "22%", m: "12px" }}>Test</Button>
+            <Button
+              component={Link}
+              to="/basketball"
+              color="primary"
+              sx={{ width: "22%", m: "12px" }}
+            >
+              Basketball
+            </Button>
           </div>
           <Divider hidden style={{ height: "34px" }} />
           <Routes>
-            <Route exact path="/" element={<HockeyPage />} />
+            <Route path="/hockey" element={<HockeyPage />} />
+            <Route exact path="/" element={<FootballPage />} />
+            <Route path="/basketball" element={<BasketballPage />} />
           </Routes>
         </Container>
       </Router>
