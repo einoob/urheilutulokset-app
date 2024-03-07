@@ -4,7 +4,7 @@ import axios from "axios";
 
 const getPages = async (pageRange) => {
   let allPages = [];
-  let [firstPage, lastPage] = pageRange.split("-")
+  let [firstPage, lastPage] = pageRange.split("-");
   for (let pageNbr = firstPage; pageNbr <= lastPage; pageNbr++) {
     try {
       const { data } = await axios.get(`${API_BASE_URL}${pageNbr}.json${API_ID}${API_KEY}`);
