@@ -72,7 +72,7 @@ const App = () => {
           sx={{ py: "12px", height: "100vh", maxHeight: "100vh" }}
         >
           <CssBaseline />
-          <div>
+          <div style={{ display: "flex", justifyContent: "right"}}>
             <IconButton onClick={() => toggleDrawer(null, !drawerOpen)}>
               <MenuIcon />
             </IconButton>
