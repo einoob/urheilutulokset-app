@@ -33,10 +33,10 @@ const App = () => {
     palette: {
       mode: "light",
       primary: {
-        main: "#36651a", 
+        main: "#36651a",
       },
       secondary: {
-        main: "#12648a", 
+        main: "#12648a",
       },
     },
   });
@@ -45,10 +45,10 @@ const App = () => {
     palette: {
       mode: "dark",
       primary: {
-        main: "#81c784", 
+        main: "#81c784",
       },
       secondary: {
-        main: "#4fcdd6", 
+        main: "#4fcdd6",
       },
       background: {
         default: "#222229",
@@ -83,6 +83,7 @@ const App = () => {
             onClose={() => toggleDrawer(null, false)}
             onOpen={() => toggleDrawer(null, true)}
             PaperProps={{ sx: { width: "250px" } }}
+            swipeAreaWidth={60}
             onKeyDown={() => toggleDrawer(false)}
             role="presentation"
           >
