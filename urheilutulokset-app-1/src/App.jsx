@@ -4,6 +4,10 @@ import { Button, Container, Divider, createTheme } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CssBaseline from "@mui/material/CssBaseline";
 
+import SportsHockeyIcon from "@mui/icons-material/SportsHockey";
+import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
+import SportsBasketballIcon from "@mui/icons-material/SportsBasketball";
+
 import { HockeyPage } from "./pages/HockeyPage";
 import { FootballPage } from "./pages/FootballPage";
 import { BasketballPage } from "./pages/BasketballPage";
@@ -32,7 +36,7 @@ const App = () => {
         main: "#81c784", // Dark theme primary color
       },
       secondary: {
-        main: "#8481C7", // Example secondary color for dark mode
+        main: "#4fcdd6", // Example secondary color for dark mode
       },
       background: {
         default: "#222229",
@@ -50,19 +54,44 @@ const App = () => {
         >
           <CssBaseline />
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "left" }}>
-            <Button component={Link} to="/" sx={{ width: "17%", m: "12px" }}>
+            <Button
+              component={Link}
+              to="/"
+              sx={{ width: "25%", m: "12px", p:"12px" }}
+              startIcon={<SportsSoccerIcon />}
+            >
               Football
             </Button>
-            <Button component={Link} to="/europe" sx={{ width: "17%", m: "12px" }}>
+            <Button
+              component={Link}
+              to="/europe"
+              sx={{ width: "25%", m: "24px" }}
+              startIcon={<SportsSoccerIcon />}
+            >
               Europe
             </Button>
-            <Button component={Link} to="/hockey" sx={{ width: "17%", m: "12px" }}>
+            <Button
+              component={Link}
+              to="/hockey"
+              sx={{ width: "25%", m: "24px" }}
+              startIcon={<SportsHockeyIcon />}
+            >
               Hockey
             </Button>
-            <Button component={Link} to="/nhl" sx={{ width: "17%", m: "12px" }}>
+            <Button
+              component={Link}
+              to="/nhl"
+              sx={{ width: "25%", m: "24px" }}
+              startIcon={<SportsHockeyIcon />}
+            >
               NHL
             </Button>
-            <Button component={Link} to="/basketball" sx={{ width: "17%", m: "12px" }}>
+            <Button
+              component={Link}
+              to="/basketball"
+              sx={{ width: "25%", m: "24px" }}
+              startIcon={<SportsBasketballIcon />}
+            >
               Basketball
             </Button>
           </div>

@@ -31,10 +31,21 @@ export const GeneralPage = ({ page }) => {
     }
   };
 
+  //console.log(page);
   return (
-    <Container sx={{ whiteSpace: "pre-line", p: "12px", m: "auto", width: "400px", boxShadow: 0, overflow: "hidden" }}>
+    <Container
+      sx={{
+        whiteSpace: "pre-line",
+        p: "12px",
+        m: "auto",
+        width: "400px",
+        boxShadow: 0,
+        overflow: "hidden",
+      }}
+    >
       {page.map((subpage, index) => (
         <Slide
+          fontSize={14}
           key={index}
           in={currentCardIndex === index}
           direction={slideDirection}
@@ -50,7 +61,36 @@ export const GeneralPage = ({ page }) => {
             }}
           >
             <div style={{ height: "100%" }}>
-              <Typography fontSize={12}>{subpage.join("\n")}</Typography>
+              <div style={{ whiteSpace: "pre-wrap" }}>
+                {subpage.map((line, index) => {
+                  if (line.includes("{White}")) {
+                    return (
+                      <Typography fontSize={14} key={index}>
+                        {line.replaceAll(/\{[^}]*\}/g, "")}
+                        {"\n"}
+                      </Typography>
+                    );
+                  } else if (line.includes("{Green}")) {
+                    return (
+                      <Typography fontSize={14} key={index} color="primary">
+                        {line.replaceAll(/\{[^}]*\}/g, "")}
+                      </Typography>
+                    );
+                  } else if (line.includes("{Cyan}")) {
+                    return (
+                      <Typography fontSize={14} key={index} color="secondary">
+                        {line.replaceAll(/\{[^}]*\}/g, "")}
+                      </Typography>
+                    );
+                  } else {
+                    return (
+                      <Typography fontSize={14} key={index}>
+                        {line.replaceAll(/\{[^}]*\}/g, "")}
+                      </Typography>
+                    );
+                  }
+                })}
+              </div>
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <IconButton
