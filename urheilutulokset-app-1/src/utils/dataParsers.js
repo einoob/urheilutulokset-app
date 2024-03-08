@@ -66,9 +66,9 @@ export const parseData = (data) => {
   parsedData = parsedData.map((data) =>
     data.replaceAll("{SB}", "").replaceAll("#", "").replaceAll("\n", "")
   );
-  parsedData = parsedData.map((data) => data.replaceAll("                ", "                       "))
+  parsedData = parsedData.map((data) => data.replaceAll("    ", "\t"));
   parsedData = parsedData.map((data) => data.replaceAll(/(\D+)(\d+-\d+)/g, "$1 $2"));
-  parsedData = parsedData.map((data) => data.replaceAll(/(\d+)([A-Za-z]+)/g, "$1  $2"));
+  parsedData = parsedData.map((data) => data.replaceAll(/(\d+)([A-Za-z]+)/g, "$1 | $2"));
   parsedData = parsedData.map((data) =>
     data.replaceAll(/(\d+)\.(\d{2})(\d+)-(\d+)/g, "$1.$2 $3-$4")
   );
