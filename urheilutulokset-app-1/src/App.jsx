@@ -72,7 +72,7 @@ const App = () => {
           sx={{ py: "12px", height: "100vh", maxHeight: "100vh" }}
         >
           <CssBaseline />
-          <div style={{ display: "flex", justifyContent: "right"}}>
+          <div>
             <IconButton onClick={() => toggleDrawer(null, !drawerOpen)}>
               <MenuIcon />
             </IconButton>
@@ -83,7 +83,7 @@ const App = () => {
             onClose={() => toggleDrawer(null, false)}
             onOpen={() => toggleDrawer(null, true)}
             PaperProps={{ sx: { width: "250px" } }}
-            swipeAreaWidth={60}
+            swipeAreaWidth={40}
             onKeyDown={() => toggleDrawer(false)}
             role="presentation"
           >
