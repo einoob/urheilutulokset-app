@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
@@ -35,10 +36,6 @@ const App = () => {
         main: "#12648a",
       },
     },
-    typography: {
-      fontFamily: "Roboto Mono, monospace",
-      fontSize: 11
-    },
     breakpoints: {
       values: {
         xs: 0,
@@ -64,10 +61,6 @@ const App = () => {
         paper: "#222229",
       },
     },
-    typography: {
-      fontFamily: "Roboto Mono, monospace",
-      fontSize: 11
-    },
     breakpoints: {
       values: {
         xs: 0,
@@ -78,6 +71,34 @@ const App = () => {
       },
     },
   });
+
+  darkTheme.typography.body1 = {
+    fontSize: "0.8rem",
+    fontFamily: "Roboto Mono, monospace",
+    "@media (max-width: 460px)": {
+      fontSize: "0.7rem",
+    },
+    "@media (max-width: 370px)": {
+      fontSize: "0.6rem",
+    },
+    "@media (max-width: 327px)": {
+      fontSize: "0.55rem",
+    },
+  };
+
+  lightTheme.typography.body1 = {
+    fontSize: "0.8rem",
+    fontFamily: "Roboto Mono, monospace",
+    "@media (max-width: 460px)": {
+      fontSize: "0.7rem",
+    },
+    "@media (max-width: 370px)": {
+      fontSize: "0.6rem",
+    },
+    "@media (max-width: 327px)": {
+      fontSize: "0.55rem",
+    },
+  };
 
   const toggleDrawer = (event, isOpen) => {
     if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
