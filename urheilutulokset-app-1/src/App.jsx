@@ -2,18 +2,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
-import {
-  Container,
-  Divider,
-  Hidden,
-  IconButton,
-  SwipeableDrawer,
-  createTheme,
-} from "@mui/material";
+import { Container, Divider, Hidden, IconButton, SwipeableDrawer } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import MenuIcon from "@mui/icons-material/Menu";
+
+import { lightTheme, darkTheme } from "../theme";
 
 import { HockeyPage } from "./pages/HockeyPage";
 import { FootballPage } from "./pages/FootballPage";
@@ -25,80 +20,6 @@ import { DrawerList } from "./modules/DrawerList";
 const App = () => {
   const [drawerOpen, setDrawer] = React.useState(false);
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-
-  const lightTheme = createTheme({
-    palette: {
-      mode: "light",
-      primary: {
-        main: "#36651a",
-      },
-      secondary: {
-        main: "#12648a",
-      },
-    },
-    breakpoints: {
-      values: {
-        xs: 0,
-        sm: 600,
-        md: 900,
-        lg: 1200,
-        xl: 1600,
-      },
-    },
-  });
-
-  const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-      primary: {
-        main: "#81c784",
-      },
-      secondary: {
-        main: "#4fcdd6",
-      },
-      background: {
-        default: "#222229",
-        paper: "#222229",
-      },
-    },
-    breakpoints: {
-      values: {
-        xs: 0,
-        sm: 600,
-        md: 900,
-        lg: 1200,
-        xl: 1600,
-      },
-    },
-  });
-
-  darkTheme.typography.body1 = {
-    fontSize: "0.8rem",
-    fontFamily: "Roboto Mono, monospace",
-    "@media (max-width: 460px)": {
-      fontSize: "0.7rem",
-    },
-    "@media (max-width: 370px)": {
-      fontSize: "0.6rem",
-    },
-    "@media (max-width: 327px)": {
-      fontSize: "0.55rem",
-    },
-  };
-
-  lightTheme.typography.body1 = {
-    fontSize: "0.8rem",
-    fontFamily: "Roboto Mono, monospace",
-    "@media (max-width: 460px)": {
-      fontSize: "0.7rem",
-    },
-    "@media (max-width: 370px)": {
-      fontSize: "0.6rem",
-    },
-    "@media (max-width: 327px)": {
-      fontSize: "0.55rem",
-    },
-  };
 
   const toggleDrawer = (event, isOpen) => {
     if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {

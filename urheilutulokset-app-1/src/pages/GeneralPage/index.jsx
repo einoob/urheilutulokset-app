@@ -63,21 +63,21 @@ export const GeneralPage = ({ page }) => {
               <div style={{ whiteSpace: "pre-wrap" }}>
                 {subpage.map((line, index) => {
                   if (line.includes("{White}")) {
-                    return <Typography key={index}>{line.replaceAll(/\{[^}]*\}/g, "")}</Typography>;
+                    return <Typography key={index}>{line.replaceAll(/\{[^}]*\}/g, " ")}</Typography>;
                   } else if (line.includes("{Green}")) {
                     return (
                       <Typography key={index} color="primary">
-                        {line.replaceAll(/\{[^}]*\}/g, "").trim()}
+                        {line.replaceAll(/\{[^}]*\}/g, " ")}
                       </Typography>
                     );
                   } else if (line.includes("{Cyan}")) {
                     return (
                       <Typography key={index} color="secondary">
-                        {line.replaceAll(/\{[^}]*\}/g, "").trim()}
+                        {line.replaceAll(/\{[^}]*\}/g, " ")}
                       </Typography>
                     );
                   } else {
-                    return <Typography key={index}>{line.replaceAll(/\{[^}]*\}/g, "")}</Typography>;
+                    return <Typography key={index}>{line.replaceAll(/\{[^}]*\}/g, " ")}</Typography>;
                   }
                 })}
               </div>

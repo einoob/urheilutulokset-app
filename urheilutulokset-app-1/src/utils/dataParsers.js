@@ -33,7 +33,6 @@ const makeArrays = (parsedData) => {
   if (currentPage.length > 0) {
     newArray.push(currentPage);
   }
-  console.log(newArray);
   return newArray;
 };
 
