@@ -35,6 +35,10 @@ const App = () => {
         main: "#12648a",
       },
     },
+    typography: {
+      fontFamily: "Roboto Mono, monospace",
+      fontSize: 11
+    },
     breakpoints: {
       values: {
         xs: 0,
@@ -60,6 +64,10 @@ const App = () => {
         paper: "#222229",
       },
     },
+    typography: {
+      fontFamily: "Roboto Mono, monospace",
+      fontSize: 11
+    },
     breakpoints: {
       values: {
         xs: 0,
@@ -80,12 +88,12 @@ const App = () => {
 
   return (
     <ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
+      <CssBaseline />
       <Router>
         <Container
           style={{ display: "flex", flexDirection: "column", width: "95%" }}
           sx={{ py: "12px", height: "100vh", maxHeight: "100vh" }}
         >
-          <CssBaseline />
           <div>
             <Hidden xlUp>
               <IconButton onClick={() => toggleDrawer(null, !drawerOpen)}>

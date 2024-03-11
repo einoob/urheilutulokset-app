@@ -45,7 +45,6 @@ export const GeneralPage = ({ page }) => {
     >
       {page.map((subpage, index) => (
         <Slide
-          fontSize={14}
           key={index}
           in={currentCardIndex === index}
           direction={slideDirection}
@@ -64,30 +63,21 @@ export const GeneralPage = ({ page }) => {
               <div style={{ whiteSpace: "pre-wrap" }}>
                 {subpage.map((line, index) => {
                   if (line.includes("{White}")) {
-                    return (
-                      <Typography fontSize={14} key={index}>
-                        {line.replaceAll(/\{[^}]*\}/g, "")}
-                        {"\n"}
-                      </Typography>
-                    );
+                    return <Typography key={index}>{line.replaceAll(/\{[^}]*\}/g, "")}</Typography>;
                   } else if (line.includes("{Green}")) {
                     return (
-                      <Typography fontSize={14} key={index} color="primary">
-                        {line.replaceAll(/\{[^}]*\}/g, "")}
+                      <Typography key={index} color="primary">
+                        {line.replaceAll(/\{[^}]*\}/g, "").trim()}
                       </Typography>
                     );
                   } else if (line.includes("{Cyan}")) {
                     return (
-                      <Typography fontSize={14} key={index} color="secondary">
-                        {line.replaceAll(/\{[^}]*\}/g, "")}
+                      <Typography key={index} color="secondary">
+                        {line.replaceAll(/\{[^}]*\}/g, "").trim()}
                       </Typography>
                     );
                   } else {
-                    return (
-                      <Typography fontSize={14} key={index}>
-                        {line.replaceAll(/\{[^}]*\}/g, "")}
-                      </Typography>
-                    );
+                    return <Typography key={index}>{line.replaceAll(/\{[^}]*\}/g, "")}</Typography>;
                   }
                 })}
               </div>

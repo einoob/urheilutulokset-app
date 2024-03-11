@@ -33,6 +33,7 @@ const makeArrays = (parsedData) => {
   if (currentPage.length > 0) {
     newArray.push(currentPage);
   }
+  console.log(newArray);
   return newArray;
 };
 
@@ -64,10 +65,9 @@ export const parseData = (data) => {
     }
   }
   parsedData = parsedData.map((data) =>
-    data.replaceAll("{SB}", "").replaceAll("#", "").replaceAll("\n", "")
+    data.replaceAll("{SB}", "").replaceAll("#######################################", "").replaceAll("\n", "")
   );
-  parsedData = parsedData.map((data) => data.replaceAll("    ", "\t"));
-  parsedData = parsedData.map((data) => data.replaceAll(/(\d+){([^{}]*)}([A-Za-z]+)/g, "$1\t\t$3"));
+  parsedData = parsedData.map((data) => data.replaceAll(/(\d+){([^{}]*)}([A-Za-z]+)/g, "$1 $3"));
   parsedData = parsedData.map((data) => data.replaceAll(/(\D+)(\d+-\d+)/g, "$1 $2"));
 
   parsedData = parsedData.map((data) =>
@@ -76,3 +76,4 @@ export const parseData = (data) => {
   parsedData = makeArrays(parsedData);
   return parsedData;
 };
+
