@@ -15,6 +15,7 @@ import { FootballPage } from "./pages/FootballPage";
 import { BasketballPage } from "./pages/BasketballPage";
 import { NhlPage } from "./pages/NhlPage";
 import { EuroFootballPage } from "./pages/EuroFootballPage";
+import { AboutPage } from "./pages/AboutPage";
 import { DrawerList } from "./modules/DrawerList";
 
 const App = () => {
@@ -38,7 +39,7 @@ const App = () => {
         >
           <div>
             <Hidden xlUp>
-              <IconButton onClick={() => toggleDrawer(null, !drawerOpen)}>
+              <IconButton size="large" onClick={() => toggleDrawer(null, !drawerOpen)}>
                 <MenuIcon />
               </IconButton>
             </Hidden>
@@ -78,6 +79,7 @@ const App = () => {
             <Route path="/hockey" element={<HockeyPage />} />
             <Route path="/nhl" element={<NhlPage />} />
             <Route path="/basketball" element={<BasketballPage />} />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
         </Container>
       </Router>

@@ -1,7 +1,7 @@
 import React from "react";
 import hockeyService from "../../services/hockeyService";
 import { parseData } from "../../utils/dataParsers";
-import { GeneralPage } from "../GeneralPage";
+import { GeneralPage } from "../../modules/GeneralPage";
 import { CircularProgress, Container } from "@mui/material";
 
 export const HockeyPage = () => {
