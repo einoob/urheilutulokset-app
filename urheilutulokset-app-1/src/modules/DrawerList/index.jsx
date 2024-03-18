@@ -7,9 +7,9 @@ import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import SportsBasketballIcon from "@mui/icons-material/SportsBasketball";
 import InfoIcon from "@mui/icons-material/Info";
 
-export const DrawerList = ({ toggleDrawer, firstListItemRef }) => (
+export const DrawerList = ({ toggleDrawer }) => (
   <List style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-    <ListItem onClick={() => toggleDrawer(null, false)} ref={firstListItemRef}>
+    <ListItem onClick={() => toggleDrawer(null, false)}>
       <Button
         component={Link}
         to="/"

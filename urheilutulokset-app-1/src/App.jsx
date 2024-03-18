@@ -19,15 +19,11 @@ import { DrawerList } from "./modules/DrawerList";
 
 const App = () => {
   const [drawerOpen, setDrawer] = React.useState(false);
-  const firstListItemRef = React.useRef(null)
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   const toggleDrawer = (event, isOpen) => {
     if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
       return;
-    }
-    if (firstListItemRef.current) {
-      firstListItemRef.current.focus();
     }
     setDrawer(isOpen);
   };
@@ -58,7 +54,7 @@ const App = () => {
               onKeyDown={() => toggleDrawer(false)}
               role="presentation"
             >
-              <DrawerList toggleDrawer={toggleDrawer} isOpen={drawerOpen} firstListItemRef={firstListItemRef} />
+              <DrawerList toggleDrawer={toggleDrawer} isOpen={drawerOpen} />
             </SwipeableDrawer>
           </Hidden>
           <Hidden xlDown>
@@ -72,7 +68,7 @@ const App = () => {
               onKeyDown={() => toggleDrawer(false)}
               variant="permanent"
             >
-              <DrawerList toggleDrawer={toggleDrawer} isOpen={drawerOpen} />
+              <DrawerList toggleDrawer={toggleDrawer} />
             </SwipeableDrawer>
           </Hidden>
           <Divider hidden style={{ height: "34px" }} />
