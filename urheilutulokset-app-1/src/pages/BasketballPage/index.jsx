@@ -1,5 +1,5 @@
 import React from "react";
-import hockeyService from "../../services/hockeyService";
+import pageService from "../../services/pageService";
 import { parseData } from "../../utils/dataParsers";
 import { GeneralPage } from "../../modules/GeneralPage";
 import { CircularProgress, Container } from "@mui/material";
@@ -10,7 +10,7 @@ export const BasketballPage = () => {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        let dataArray = await hockeyService.getPages("271-279");
+        let dataArray = await pageService.getPages("271-279");
         setHockeyData(dataArray);
       } catch (error) {
         console.error("Error fetching data:", error);
