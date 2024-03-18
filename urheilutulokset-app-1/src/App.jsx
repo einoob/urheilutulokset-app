@@ -1,4 +1,3 @@
-/* eslint-disable no-dupe-keys */
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
@@ -20,11 +19,15 @@ import { DrawerList } from "./modules/DrawerList";
 
 const App = () => {
   const [drawerOpen, setDrawer] = React.useState(false);
+  const firstListItemRef = React.useRef(null)
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   const toggleDrawer = (event, isOpen) => {
     if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
       return;
+    }
+    if (firstListItemRef.current) {
+      firstListItemRef.current.focus();
     }
     setDrawer(isOpen);
   };
@@ -55,7 +58,7 @@ const App = () => {
               onKeyDown={() => toggleDrawer(false)}
               role="presentation"
             >
-              <DrawerList toggleDrawer={toggleDrawer} isOpen={drawerOpen} />
+              <DrawerList toggleDrawer={toggleDrawer} isOpen={drawerOpen} firstListItemRef={firstListItemRef} />
             </SwipeableDrawer>
           </Hidden>
           <Hidden xlDown>
