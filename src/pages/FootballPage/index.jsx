@@ -10,7 +10,7 @@ export const FootballPage = () => {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        let dataArray = await pageService.getPages("241-244");
+        let dataArray = await pageService.getPages("241-250");
         setHockeyData(dataArray);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -28,11 +28,9 @@ export const FootballPage = () => {
       </Container>
     );
   }
-  if (parsedData) {
-    return (
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
-        {parsedData && parsedData.map((data, index) => <GeneralPage key={index} page={data} />)}
-      </div>
-    );
-  }
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+      {parsedData && parsedData.map((data, index) => <GeneralPage key={index} page={data} />)}
+    </div>
+  );
 };
