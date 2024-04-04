@@ -4,10 +4,10 @@ export const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#36651a",
+      main: "#2bab15",
     },
     secondary: {
-      main: "#12648a",
+      main: "#1567ab",
     },
   },
   breakpoints: {
