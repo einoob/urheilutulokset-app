@@ -28,12 +28,9 @@ export const NhlPage = () => {
       </Container>
     );
   }
-
-  if (parsedData) {
-    return (
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
-        {parsedData && parsedData.map((data, index) => <GeneralPage key={index} page={data} />)}
-      </div>
-    );
-  }
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+      {parsedData && parsedData.map((data, index) => <GeneralPage key={index} page={data} />)}
+    </div>
+  );
 };

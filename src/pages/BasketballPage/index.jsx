@@ -5,13 +5,13 @@ import { GeneralPage } from "../../modules/GeneralPage";
 import { CircularProgress, Container } from "@mui/material";
 
 export const BasketballPage = () => {
-  const [basketballData, setHockeyData] = React.useState([]);
+  const [basketballData, setBasketballData] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
         let dataArray = await pageService.getPages("271-279");
-        setHockeyData(dataArray);
+        setBasketballData(dataArray);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -28,12 +28,9 @@ export const BasketballPage = () => {
       </Container>
     );
   }
-
-  if (parsedData) {
-    return (
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
-        {parsedData && parsedData.map((data, index) => <GeneralPage key={index} page={data} />)}
-      </div>
-    );
-  }
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+      {parsedData && parsedData.map((data, index) => <GeneralPage key={index} page={data} />)}
+    </div>
+  );
 };

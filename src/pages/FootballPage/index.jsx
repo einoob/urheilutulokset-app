@@ -5,13 +5,13 @@ import { GeneralPage } from "../../modules/GeneralPage";
 import { CircularProgress, Container } from "@mui/material";
 
 export const FootballPage = () => {
-  const [footballData, setHockeyData] = React.useState([]);
+  const [footballData, setFootballData] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
         let dataArray = await pageService.getPages("241-250");
-        setHockeyData(dataArray);
+        setFootballData(dataArray);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
