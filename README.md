@@ -7,8 +7,8 @@ This app fetches teletext sport pages data using Yle's free API. It is built usi
 - Displays the fetched data in a user-friendly format.
 - Allows users to navigate through the sport pages easily.
 - Dark mode / light mode depending on device default
-– Scalable font to fit for narrow screens
-– Swipeable subpages in mobile
+- Scalable font to fit for narrow screens
+- Swipeable subpages in mobile
 - Responsive drawer
 
 ## Technologies Used
