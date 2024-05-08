@@ -10,7 +10,7 @@ export const HockeyPage = () => {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        let dataArray = await pageService.getPages("221-233");
+        let dataArray = await pageService.getPages("621-633");
         setHockeyData(dataArray);
       } catch (error) {
         console.error("Error fetching data:", error);
