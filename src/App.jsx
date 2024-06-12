@@ -75,7 +75,7 @@ const App = () => {
           <Routes>
             <Route exact path="/" element={<FootballPage />} />
             <Route path="europe" element={<EuroFootballPage />} />
-            <Route path="/hockey" element={<HockeyPage />} />
+            <Route path="/euro2024" element={<HockeyPage />} />
             <Route path="/nhl" element={<NhlPage />} />
             <Route path="/basketball" element={<BasketballPage />} />
             <Route path="/about" element={<AboutPage />} />

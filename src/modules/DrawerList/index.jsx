@@ -32,11 +32,11 @@ export const DrawerList = ({ toggleDrawer }) => (
     <ListItem onClick={() => toggleDrawer(null, false)}>
       <Button
         component={Link}
-        to="/hockey"
+        to="/euro2024"
         sx={{ width: "200px", m: "24px", justifyContent: "left", fontSize: 16 }}
-        startIcon={<SportsHockeyIcon />}
+        startIcon={<SportsSoccerIcon />}
       >
-        Hockey
+        EURO 2024
       </Button>
     </ListItem>
     <ListItem onClick={() => toggleDrawer(null, false)}>
