@@ -9,6 +9,9 @@ export const lightTheme = createTheme({
     secondary: {
       main: "#1567ab",
     },
+    tertiary: {
+      main: "#d67a02",
+    }
   },
   breakpoints: {
     values: {
@@ -29,6 +32,9 @@ export const darkTheme = createTheme({
     },
     secondary: {
       main: "#4fcdd6",
+    },
+    tertiary: {
+      main: "#ffc003",
     },
     background: {
       default: "#222229",

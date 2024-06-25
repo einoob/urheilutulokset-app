@@ -1,11 +1,13 @@
 import React from "react";
 import { Card, IconButton, Slide, Typography, Container } from "@mui/material";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
+import { useTheme } from "@emotion/react";
 
 export const GeneralPage = ({ page }) => {
   const [currentCardIndex, setCurrentCardIndex] = React.useState(0);
   const [slideDirection, setSlideDirection] = React.useState("left");
   const [startX, setStartX] = React.useState(0);
+  const theme =  useTheme();
 
   const handleNextCard = () => {
     setSlideDirection("left");
@@ -76,7 +78,14 @@ export const GeneralPage = ({ page }) => {
                         {line.replaceAll(/\{[^}]*\}/g, " ")}
                       </Typography>
                     );
-                  } else {
+                  } else if (line.includes("{Yellow}") && !line.includes("{White}")) {
+                    return (
+                      <Typography key={index} sx={{ color: theme.palette.tertiary.main}}>
+                        {line.replaceAll(/\{[^}]*\}/g, " ")}
+                      </Typography>
+                    );
+                  }  
+                  else {
                     return <Typography key={index}>{line.replaceAll(/\{[^}]*\}/g, " ")}</Typography>;
                   }
                 })}
