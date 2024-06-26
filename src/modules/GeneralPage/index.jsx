@@ -3,16 +3,84 @@ import { Card, IconButton, Slide, Typography, Container } from "@mui/material";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import { useTheme } from "@emotion/react";
 
+const ColoredWords = ({ line }) => {
+  const theme = useTheme();
+  const colorTagRegex = /\{(.*?)\}/g;
+  const words = line.split(/(\s+)/); // Split by whitespace but keep the spaces
+
+  let currentColor = theme.palette.text.primary; // Default color
+  const coloredWords = words.map((word, index) => {
+    const colorTagMatch = word.match(colorTagRegex);
+    if (colorTagMatch) {
+      switch (colorTagMatch[0]) {
+        case "{Green}":
+          currentColor = theme.palette.primary.main;
+          break;
+        case "{Cyan}":
+          currentColor = theme.palette.secondary.main;
+          break;
+        case "{Yellow}":
+          currentColor = theme.palette.tertiary.main;
+          break;
+        case "{White}":
+          currentColor = theme.palette.text.primary;
+          break;
+        default:
+          currentColor = theme.palette.text.primary;
+          break;
+      }
+      // Remove the color tag from the word
+      word = word.replace(colorTagRegex, "");
+    }
+    return (
+      <span key={index} style={{ color: currentColor }}>
+        {word}
+      </span>
+    );
+  });
+
+  return (
+    <Typography component="span" style={{ whiteSpace: "pre-wrap" }}>
+      {coloredWords}
+    </Typography>
+  );
+};
+
+const SubpageContent = ({ subpage }) => (
+  <div style={{ whiteSpace: "pre-wrap" }}>
+    {subpage.map((line, index) => (
+      <Typography key={index} component="div">
+        <ColoredWords line={line} />
+      </Typography>
+    ))}
+  </div>
+);
+
+const CardNavigator = ({ currentCardIndex, pageLength, handlePreviousCard, handleNextCard }) => (
+  <div style={{ display: "flex", justifyContent: "center" }}>
+    <IconButton size="large" onClick={handlePreviousCard} disabled={currentCardIndex === 0}>
+      <ArrowLeft />
+    </IconButton>
+    <IconButton
+      size="large"
+      onClick={handleNextCard}
+      disabled={currentCardIndex === pageLength - 1}
+    >
+      <ArrowRight />
+    </IconButton>
+  </div>
+);
+
 export const GeneralPage = ({ page }) => {
   const [currentCardIndex, setCurrentCardIndex] = React.useState(0);
   const [slideDirection, setSlideDirection] = React.useState("left");
   const [startX, setStartX] = React.useState(0);
-  const theme =  useTheme();
 
   const handleNextCard = () => {
     setSlideDirection("left");
     setCurrentCardIndex(Math.min(page.length - 1, currentCardIndex + 1));
   };
+
   const handlePreviousCard = () => {
     setSlideDirection("right");
     setCurrentCardIndex(Math.max(0, currentCardIndex - 1));
@@ -25,15 +93,12 @@ export const GeneralPage = ({ page }) => {
   const handleTouchEnd = (event) => {
     const deltaX = event.changedTouches[0].clientX - startX;
     if (deltaX > 50 && currentCardIndex > 0) {
-      setSlideDirection("right");
-      setCurrentCardIndex(Math.max(0, currentCardIndex - 1));
+      handlePreviousCard();
     } else if (deltaX < -50 && currentCardIndex < page.length - 1) {
-      setSlideDirection("left");
-      setCurrentCardIndex(Math.min(page.length - 1, currentCardIndex + 1));
+      handleNextCard();
     }
   };
 
-  //console.log(page);
   return (
     <Container
       sx={{
@@ -62,51 +127,14 @@ export const GeneralPage = ({ page }) => {
             }}
           >
             <div style={{ height: "100%" }}>
-              <div style={{ whiteSpace: "pre-wrap" }}>
-                {subpage.map((line, index) => {
-                  if (line.includes("{White}")) {
-                    return <Typography key={index}>{line.replaceAll(/\{[^}]*\}/g, " ")}</Typography>;
-                  } else if (line.includes("{Green}")) {
-                    return (
-                      <Typography key={index} color="primary">
-                        {line.replaceAll(/\{[^}]*\}/g, " ")}
-                      </Typography>
-                    );
-                  } else if (line.includes("{Cyan}")) {
-                    return (
-                      <Typography key={index} color="secondary">
-                        {line.replaceAll(/\{[^}]*\}/g, " ")}
-                      </Typography>
-                    );
-                  } else if (line.includes("{Yellow}") && !line.includes("{White}")) {
-                    return (
-                      <Typography key={index} sx={{ color: theme.palette.tertiary.main}}>
-                        {line.replaceAll(/\{[^}]*\}/g, " ")}
-                      </Typography>
-                    );
-                  }  
-                  else {
-                    return <Typography key={index}>{line.replaceAll(/\{[^}]*\}/g, " ")}</Typography>;
-                  }
-                })}
-              </div>
+              <SubpageContent subpage={subpage} />
             </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <IconButton
-                size="large"
-                onClick={handlePreviousCard}
-                disabled={currentCardIndex === 0}
-              >
-                <ArrowLeft />
-              </IconButton>
-              <IconButton
-                size="large"
-                onClick={handleNextCard}
-                disabled={currentCardIndex === page.length - 1}
-              >
-                <ArrowRight />
-              </IconButton>
-            </div>
+            <CardNavigator
+              currentCardIndex={currentCardIndex}
+              pageLength={page.length}
+              handlePreviousCard={handlePreviousCard}
+              handleNextCard={handleNextCard}
+            />
           </Card>
         </Slide>
       ))}
