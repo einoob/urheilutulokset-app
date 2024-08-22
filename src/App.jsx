@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
-import { Container, Divider, Hidden, IconButton, SwipeableDrawer } from "@mui/material";
+import { Container, Divider, Hidden, IconButton, SwipeableDrawer, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -16,6 +16,9 @@ import { NhlPage } from "./pages/NhlPage";
 import { EuroFootballPage } from "./pages/EuroFootballPage";
 import { AboutPage } from "./pages/AboutPage";
 import { DrawerList } from "./modules/DrawerList";
+
+import logo from "./assets/logo.js";
+
 
 const App = () => {
   const [drawerOpen, setDrawer] = React.useState(false);
@@ -36,12 +39,14 @@ const App = () => {
           style={{ display: "flex", flexDirection: "column", width: "95%" }}
           sx={{ py: "12px", height: "100vh", maxHeight: "100vh" }}
         >
-          <div>
+          <div style={{ display: "flex", flexDirection: "row", width: "100%", alignItems: "flex-end" }}>
             <Hidden xlUp>
               <IconButton size="large" onClick={() => toggleDrawer(null, !drawerOpen)}>
                 <MenuIcon />
               </IconButton>
             </Hidden>
+            <img src={logo} style={{ width: "100%", maxWidth: "50px" }} />
+            <Typography color="primary">&nbsp;x&nbsp;URHEILUTULOKSET</Typography>
           </div>
           <Hidden xlUp>
             <SwipeableDrawer
