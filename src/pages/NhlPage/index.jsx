@@ -30,7 +30,7 @@ export const NhlPage = () => {
   } else if (nhlData === "error") {
     return (
       <Container sx={{ display: "flex", justifyContent: "center", m: "12px" }}>
-        <Typography>No pages found</Typography>
+        <Typography>No pages found.</Typography>
       </Container>
     );
   }

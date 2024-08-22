@@ -27,11 +27,10 @@ export const EuroFootballPage = () => {
         <CircularProgress />
       </Container>
     );
-  }
-  else if (footballData === "error") {
+  } else if (footballData === "error") {
     return (
       <Container sx={{ display: "flex", justifyContent: "center", m: "12px" }}>
-        <Typography>No pages found</Typography>
+        <Typography>No pages found.</Typography>
       </Container>
     );
   }
