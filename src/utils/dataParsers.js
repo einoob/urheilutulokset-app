@@ -37,6 +37,7 @@ const makeArrays = (parsedData) => {
 };
 
 export const parseData = (data) => {
+  if (data === "error") return;
   let parsedData = [];
   let previousPage = null;
   let previousSubpage = null;
@@ -64,7 +65,10 @@ export const parseData = (data) => {
     }
   }
   parsedData = parsedData.map((data) =>
-    data.replaceAll("{SB}", "").replaceAll("#######################################", "").replaceAll("\n", "")
+    data
+      .replaceAll("{SB}", "")
+      .replaceAll("#######################################", "")
+      .replaceAll("\n", "")
   );
   parsedData = parsedData.map((data) => data.replaceAll(/(\d+){([^{}]*)}([A-Za-z]+)/g, "$1 $3"));
   parsedData = parsedData.map((data) => data.replaceAll(/(\D+)(\d+-\d+)/g, "$1 $2"));
@@ -75,4 +79,3 @@ export const parseData = (data) => {
   parsedData = makeArrays(parsedData);
   return parsedData;
 };
-

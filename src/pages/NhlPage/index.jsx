@@ -2,7 +2,7 @@ import React from "react";
 import pageService from "../../services/pageService";
 import { parseData } from "../../utils/dataParsers";
 import { GeneralPage } from "../../modules/GeneralPage";
-import { CircularProgress, Container } from "@mui/material";
+import { CircularProgress, Container, Typography } from "@mui/material";
 
 export const NhlPage = () => {
   const [nhlData, setHockeyData] = React.useState([]);
@@ -25,6 +25,12 @@ export const NhlPage = () => {
     return (
       <Container sx={{ display: "flex", justifyContent: "center", m: "12px" }}>
         <CircularProgress />
+      </Container>
+    );
+  } else if (nhlData === "error") {
+    return (
+      <Container sx={{ display: "flex", justifyContent: "center", m: "12px" }}>
+        <Typography>No pages found</Typography>
       </Container>
     );
   }

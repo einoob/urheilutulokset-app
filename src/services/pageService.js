@@ -13,6 +13,9 @@ const getPages = async (pageRange) => {
       continue;
     }
   }
+  if (allPages.length === 0) {
+    return "error";
+  }
   return allPages;
 };
 
