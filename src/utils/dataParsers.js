@@ -69,6 +69,7 @@ export const parseData = (data) => {
       .replaceAll("{SB}", "")
       .replaceAll("#######################################", "")
       .replaceAll("\n", "")
+      .replace(/^\s(?!\s)/, "")
   );
   parsedData = parsedData.map((data) => data.replaceAll(/(\d+){([^{}]*)}([A-Za-z]+)/g, "$1 $3"));
   parsedData = parsedData.map((data) => data.replaceAll(/(\D+)(\d+-\d+)/g, "$1 $2"));
