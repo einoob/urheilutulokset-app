@@ -9,7 +9,7 @@ import InfoIcon from "@mui/icons-material/Info";
 
 export const DrawerList = ({ toggleDrawer }) => (
   <List style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-    <ListItem onClick={() => toggleDrawer(null, false)}>
+    {/* <ListItem onClick={() => toggleDrawer(null, false)}>
       <Button
         component={Link}
         to="/"
@@ -18,11 +18,11 @@ export const DrawerList = ({ toggleDrawer }) => (
       >
         Football
       </Button>
-    </ListItem>
+    </ListItem> */}
     <ListItem onClick={() => toggleDrawer(null, false)}>
       <Button
         component={Link}
-        to="/europe"
+        to="/"
         sx={{ width: "200px", m: "24px", justifyContent: "left", fontSize: 16 }}
         startIcon={<SportsSoccerIcon />}
       >
@@ -32,11 +32,21 @@ export const DrawerList = ({ toggleDrawer }) => (
     <ListItem onClick={() => toggleDrawer(null, false)}>
       <Button
         component={Link}
-        to="/euro2024"
+        to="/ucl"
         sx={{ width: "200px", m: "24px", justifyContent: "left", fontSize: 16 }}
         startIcon={<SportsSoccerIcon />}
       >
-        EURO 2024
+        UCL
+      </Button>
+    </ListItem>
+    <ListItem onClick={() => toggleDrawer(null, false)}>
+      <Button
+        component={Link}
+        to="/hockey"
+        sx={{ width: "200px", m: "24px", justifyContent: "left", fontSize: 16 }}
+        startIcon={<SportsHockeyIcon />}
+      >
+        Hockey
       </Button>
     </ListItem>
     <ListItem onClick={() => toggleDrawer(null, false)}>

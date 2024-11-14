@@ -4,14 +4,14 @@ import { parseData } from "../../utils/dataParsers";
 import { GeneralPage } from "../../modules/GeneralPage";
 import { CircularProgress, Container, Typography } from "@mui/material";
 
-export const HockeyPage = () => {
-  const [hockeyData, setHockeyData] = React.useState([]);
+export const UCLPage = () => {
+  const [footballData, setFootballData] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        let dataArray = await pageService.getPages("221-233");
-        setHockeyData(dataArray);
+        let dataArray = await pageService.getPages("661-662");
+        setFootballData(dataArray);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -19,15 +19,15 @@ export const HockeyPage = () => {
     fetchData();
   }, []);
 
-  const parsedData = parseData(hockeyData);
+  const parsedData = parseData(footballData);
 
-  if (hockeyData.length === 0) {
+  if (footballData.length === 0) {
     return (
       <Container sx={{ display: "flex", justifyContent: "center", m: "12px" }}>
         <CircularProgress />
       </Container>
     );
-  } else if (hockeyData === "error") {
+  } else if (footballData === "error") {
     return (
       <Container sx={{ display: "flex", justifyContent: "center", m: "12px" }}>
         <Typography>No pages found.</Typography>

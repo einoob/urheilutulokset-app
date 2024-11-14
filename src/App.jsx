@@ -10,7 +10,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { lightTheme, darkTheme } from "../theme";
 
 import { HockeyPage } from "./pages/HockeyPage";
-import { FootballPage } from "./pages/FootballPage";
+// import { FootballPage } from "./pages/FootballPage";
+import { UCLPage } from "./pages/UCLPage";
 import { BasketballPage } from "./pages/BasketballPage";
 import { NhlPage } from "./pages/NhlPage";
 import { EuroFootballPage } from "./pages/EuroFootballPage";
@@ -18,7 +19,6 @@ import { AboutPage } from "./pages/AboutPage";
 import { DrawerList } from "./modules/DrawerList";
 
 import logo from "./assets/logo.js";
-
 
 const App = () => {
   const [drawerOpen, setDrawer] = React.useState(false);
@@ -39,7 +39,9 @@ const App = () => {
           style={{ display: "flex", flexDirection: "column", width: "95%" }}
           sx={{ py: "12px", height: "100vh", maxHeight: "100vh" }}
         >
-          <div style={{ display: "flex", flexDirection: "row", width: "100%", alignItems: "flex-end" }}>
+          <div
+            style={{ display: "flex", flexDirection: "row", width: "100%", alignItems: "flex-end" }}
+          >
             <Hidden xlUp>
               <IconButton size="large" onClick={() => toggleDrawer(null, !drawerOpen)}>
                 <MenuIcon />
@@ -78,9 +80,10 @@ const App = () => {
           </Hidden>
           <Divider hidden style={{ height: "34px" }} />
           <Routes>
-            <Route exact path="/" element={<FootballPage />} />
-            <Route path="europe" element={<EuroFootballPage />} />
-            <Route path="/euro2024" element={<HockeyPage />} />
+            {/* <Route exact path="/" element={<FootballPage />} /> */}
+            <Route exact path="/" element={<EuroFootballPage />} />
+            <Route path="/ucl" element={<UCLPage />} />
+            <Route path="/hockey" element={<HockeyPage />} />
             <Route path="/nhl" element={<NhlPage />} />
             <Route path="/basketball" element={<BasketballPage />} />
             <Route path="/about" element={<AboutPage />} />
